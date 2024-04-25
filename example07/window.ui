@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example07</property>
+		<property name="default-width">640</property>
+		<property name="default-height">480</property>
+
+		<child>
+			<object class="GtkOverlay">
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">vertical</property>
+
+						<child>
+							<object class="GtkActionBar">
+								<child type="start">
+									<object class="GtkButton">
+										<property name="icon-name">go-up-symbolic</property>
+										<style>
+											<class name="image-button" />
+										</style>
+										<signal name="clicked" handler="on_go_up" />
+									</object>
+								</child>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkScrolledWindow">
+								<property name="has-frame">true</property>
+								<property name="valign">fill</property>
+								<property name="vexpand">true</property>
+								<child>
+									<object class="GtkGridView">
+										<signal name="activate" handler="on_file_list_activate" />
+										<property name="model">
+											<object class="GtkSingleSelection">
+												<property name="model" bind-source="MyWindow" bind-property="file-model" />
+												</object>
+										</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="MyFileItemWidget">
+				<property name="orientation">vertical</property>
+				<property name="spacing">4</property>
+				<binding name="item">
+					<lookup name="item">GtkListItem</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+									</object>
+								</child>
+							</object>
+						</child>
+
+					</object>
+				</child>
+
+				<child type="overlay">
+					<object class="GtkOverlay">
+						<style>
+							<class name="overlay_background" />
+						</style>
+						<property name="halign">fill</property>
+						<property name="hexpand">true</property>
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<property name="visible" bind-source="MyWindow" bind-property="image-active">false</property>
+						<child>
+							<object class="GtkPicture">
+								<property name="paintable" bind-source="MyWindow" bind-property="image-paintable" />
+							</object>
+						</child>
+						<child type="overlay">
+							<object class="GtkButton">
+								<property name="icon-name">window-close-symbolic</property>
+								<property name="halign">end</property>
+								<property name="valign">start</property>
+								<style>
+									<class name="image-button" />
+								</style>
+								<signal name="clicked" handler="on_close_image" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>
+

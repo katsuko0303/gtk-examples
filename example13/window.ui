@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example13</property>
+		<property name="default-width">640</property>
+		<property name="default-height">480</property>
+
+		<child type="titlebar">
+			<object class="GtkHeaderBar">
+				<child type="start">
+					<object class="GtkButton">
+						<property name="icon-name">document-open-symbolic</property>
+						<style>
+							<class name="image-button" />
+						</style>
+						<signal name="clicked" handler="on_open" />
+					</object>
+				</child>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<property name="margin-start">8</property>
+						<property name="margin-end">8</property>
+						<property name="margin-top">8</property>
+						<property name="margin-bottom">8</property>
+						<property name="homogeneous">true</property>
+						<child>
+							<object class="GtkBox">
+								<property name="orientation">horizontal</property>
+								<property name="spacing">8</property>
+								<child>
+									<object class="GtkLabel">
+										<property name="label">Content Fit</property>
+									</object>
+								</child>
+								<child>
+									<object class="GtkDropDown" id="content_fit_selector">
+										<property name="model" bind-source="MyWindow" bind-property="content-fit-model" />
+										<property name="selected" bind-source="MyWindow" bind-property="content-fit-selected" bind-flags="bidirectional" />
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkLabel">
+				<binding name="label">
+					<lookup name="string" type="GtkStringObject">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="GtkCheckButton">
+								<property name="label">Can Shrink</property>
+								<property name="active" bind-source="MyWindow" bind-property="can-shrink" bind-flags="bidirectional">true</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkPicture">
+						<property name="content-fit" bind-source="MyWindow" bind-property="content-fit" />
+						<property name="can-shrink" bind-source="MyWindow" bind-property="can-shrink" />
+						<property name="paintable" bind-source="MyWindow" bind-property="paintable" />
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkDropTarget">
+				<property name="actions">copy</property>
+				<property name="formats">GFile GdkPixbuf</property>
+				<signal name="drop" handler="on_drop_image" />
+			</object>
+		</child>
+
+	</template>
+</interface>
+

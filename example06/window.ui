@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example06</property>
+		<property name="default-width">640</property>
+		<property name="default-height">480</property>
+
+		<child>
+			<object class="GtkPaned">
+				<property name="orientation">horizontal</property>
+				<property name="position">320</property>
+
+				<child>
+					<object class="GtkPicture" id="picture">
+						<property name="paintable" bind-source="MyWindow" bind-property="paintable" />
+						<property name="halign">fill</property>
+						<property name="hexpand">true</property>
+						<child>
+							<object class="GtkGestureDrag">
+								<property name="button">1</property>
+								<signal name="drag-begin" handler="on_picture_drag_begin" />
+								<signal name="drag-update" handler="on_picture_drag_update" />
+								<signal name="drag-end" handler="on_picture_drag_end" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox" id="drawer_box">
+						<property name="orientation">vertical</property>
+						<property name="spacing">8</property>
+						<property name="margin-start">8</property>
+						<property name="margin-end">8</property>
+						<property name="margin-top">8</property>
+						<property name="margin-bottom">8</property>
+						<property name="hexpand">false</property>
+
+						<child>
+							<object class="GtkDropDown">
+								<property name="model">
+									<object class="GListStore" id="drawer_model">
+										<property name="item-type">MyDrawer</property>
+									</object>
+								</property>
+								<property name="factory">
+									<object class="GtkBuilderListItemFactory">
+										<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkLabel">
+				<binding name="label">
+					<lookup name="label" type="MyDrawer">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+										]]></property>
+									</object>
+								</property>
+								<signal name="notify::selected" handler="on_drawer_drop_down_notify_selected" />
+							</object>
+						</child>
+
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>

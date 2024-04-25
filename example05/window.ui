@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example05</property>
+		<property name="default-width">640</property>
+		<property name="default-height">480</property>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+
+				<child>
+					<object class="GtkActionBar">
+						<child type="start">
+							<object class="GtkButton">
+								<property name="icon-name">go-up-symbolic</property>
+								<style>
+									<class name="image-button" />
+								</style>
+								<signal name="clicked" handler="on_go_up" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkScrolledWindow">
+						<property name="has-frame">true</property>
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<child>
+							<object class="GtkColumnView" id="file_list">
+								<property name="model">
+									<object class="GtkMultiSelection">
+										<property name="model">
+											<object class="GtkSortListModel">
+												<property name="model" bind-source="MyWindow" bind-property="file-model" />
+												<binding name="sorter">
+													<lookup name="sorter">file_list</lookup>
+												</binding>
+											</object>
+										</property>
+									</object>
+								</property>
+								<signal name="activate" handler="on_file_list_activate" />
+
+								<child>
+									<object class="GtkColumnViewColumn" id="default_column">
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkBox">
+				<property name="orientation">horizontal</property>
+				<property name="spacing">4</property>
+				<property name="margin-start">4</property>
+				<property name="margin-end">4</property>
+				<child>
+					<object class="GtkImage">
+						<binding name="gicon">
+							<lookup name="icon" type="MyFileItem">
+								<lookup name="item">GtkListItem</lookup>
+							</lookup>
+						</binding>
+					</object>
+				</child>
+				<child>
+					<object class="GtkInscription">
+						<property name="halign">fill</property>
+						<property name="hexpand">true</property>
+						<property name="text-overflow">ellipsize-end</property>
+						<binding name="text">
+							<lookup name="display-name" type="MyFileItem">
+								<lookup name="item">GtkListItem</lookup>
+							</lookup>
+						</binding>
+					</object>
+				</child>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+										<property name="sorter">
+											<object class="GtkStringSorter">
+												<property name="expression">
+													<lookup name="display-name" type="MyFileItem" />
+												</property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="title">Description</property>
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<property name="text-overflow">ellipsize-end</property>
+				<binding name="text">
+					<lookup name="type-description" type="MyFileItem">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+										<property name="sorter">
+											<object class="GtkStringSorter">
+												<property name="expression">
+													<lookup name="type-description" type="MyFileItem" />
+												</property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="title">Modified</property>
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<binding name="text">
+					<lookup name="display-modified-time" type="MyFileItem">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+										<property name="sorter">
+											<object class="GtkNumericSorter">
+												<property name="expression">
+													<lookup name="modified-time" type="MyFileItem" />
+												</property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="title">Size</property>
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<property name="xalign">1</property>
+				<binding name="text">
+					<lookup name="size" type="MyFileItem">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+										<property name="sorter">
+											<object class="GtkNumericSorter">
+												<property name="expression">
+													<lookup name="size" type="MyFileItem" />
+												</property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+		</child>
+
+	</template>
+</interface>
+

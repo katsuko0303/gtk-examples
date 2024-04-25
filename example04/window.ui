@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example04</property>
+		<property name="default-width">640</property>
+		<property name="default-height">480</property>
+
+		<child type="titlebar">
+			<object class="GtkHeaderBar">
+				<child type="start">
+					<object class="GtkButton">
+						<property name="icon-name">document-new-symbolic</property>
+						<style>
+							<class name="image-button" />
+						</style>
+						<signal name="clicked" handler="on_new_address" />
+					</object>
+				</child>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+
+				<child>
+					<object class="GtkScrolledWindow">
+						<property name="has-frame">true</property>
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<child>
+							<object class="GtkColumnView">
+								<signal name="activate" handler="on_address_list_activate" />
+								<property name="model">
+									<object class="GtkSingleSelection">
+										<property name="model">
+											<object class="GListStore" id="address_model">
+												<property name="item-type">MyAddressData</property>
+											</object>
+										</property>
+									</object>
+								</property>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<property name="xalign">0</property>
+				<property name="text-overflow">ellipsize-end</property>
+				<binding name="text">
+					<lookup name="full-name" type="MyAddressData">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="title">First Name</property>
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<property name="xalign">0</property>
+				<property name="text-overflow">ellipsize-end</property>
+				<binding name="text">
+					<lookup name="first-name" type="MyAddressData">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="title">Last Name</property>
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<property name="xalign">0</property>
+				<property name="text-overflow">ellipsize-end</property>
+				<binding name="text">
+					<lookup name="last-name" type="MyAddressData">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="title">Age</property>
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<property name="xalign">1</property>
+				<property name="text-overflow">ellipsize-end</property>
+				<binding name="text">
+					<lookup name="age" type="MyAddressData">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="title">Address</property>
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<property name="xalign">0</property>
+				<property name="text-overflow">ellipsize-end</property>
+				<binding name="text">
+					<lookup name="address" type="MyAddressData">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+								<child>
+									<object class="GtkColumnViewColumn">
+										<property name="title">EMail</property>
+										<property name="expand">true</property>
+										<property name="resizable">true</property>
+										<property name="factory">
+											<object class="GtkBuilderListItemFactory">
+												<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkInscription">
+				<property name="xalign">0</property>
+				<property name="text-overflow">ellipsize-end</property>
+				<binding name="text">
+					<lookup name="email" type="MyAddressData">
+						<lookup name="item">GtkListItem</lookup>
+					</lookup>
+				</binding>
+			</object>
+		</property>
+	</template>
+</interface>
+												]]></property>
+											</object>
+										</property>
+									</object>
+								</child>
+
+							</object>
+						</child>
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>
+
+

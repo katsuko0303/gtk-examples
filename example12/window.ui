@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example12</property>
+		<property name="default-width">400</property>
+		<property name="default-height">300</property>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+
+				<child>
+					<object class="GtkSearchBar">
+						<property name="key-capture-widget">list_view</property>
+						<child>
+							<object class="GtkSearchEntry" id="search_entry">
+								<property name="text" bind-source="MyWindow" bind-property="search-text" bind-flags="bidirectional" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkScrolledWindow">
+						<property name="has-frame">true</property>
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<child>
+							<object class="GtkListView" id="list_view">
+								<property name="model">
+									<object class="GtkNoSelection">
+										<property name="model">
+											<object class="GtkFilterListModel">
+												<property name="model">
+													<object class="GListStore" id="file_model">
+														<property name="item-type">GFileInfo</property>
+													</object>
+												</property>
+												<property name="filter">
+													<object class="GtkCustomFilter" id="filter">
+													</object>
+												</property>
+											</object>
+										</property>
+									</object>
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkRevealer">
+						<property name="reveal-child" bind-source="MyWindow" bind-property="loading">false</property>
+						<child>
+							<object class="GtkBox">
+								<property name="orientation">horizontal</property>
+								<property name="spacing">4</property>
+								<child>
+									<object class="GtkSpinner" id="spinner">
+									</object>
+								</child>
+								<child>
+									<object class="GtkLabel">
+										<property name="label">Now, loading...</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>
+

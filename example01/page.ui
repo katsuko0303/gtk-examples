@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<object class="GtkLabel" id="page">
+		<property name="halign">center</property>
+		<property name="valign">center</property>
+		<attributes>
+			<attribute name="weight" value="PANGO_WEIGHT_BOLD" />
+		</attributes>
+	</object>
+</interface>
+

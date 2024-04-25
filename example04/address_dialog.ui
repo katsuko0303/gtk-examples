@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyAddressDialog">
+		<property name="title">Address</property>
+		<property name="default-widget">accept_button</property>
+
+		<child type="titlebar">
+			<object class="GtkHeaderBar">
+				<property name="show-title-buttons">false</property>
+				<child type="start">
+					<object class="GtkButton">
+						<property name="label">Cancel</property>
+						<signal name="clicked" handler="on_cancel" />
+					</object>
+				</child>
+				<child type="end">
+					<object class="GtkButton" id="accept_button">
+						<property name="label">OK</property>
+						<style>
+							<class name="suggested-action" />
+						</style>
+						<signal name="clicked" handler="on_accept" />
+					</object>
+				</child>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+				<property name="spacing">8</property>
+				<property name="margin-start">8</property>
+				<property name="margin-end">8</property>
+				<property name="margin-top">8</property>
+				<property name="margin-bottom">8</property>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">_First Name:</property>
+								<property name="use-underline">true</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkEntry">
+								<property name="activates-default">true</property>
+								<property name="halign">fill</property>
+								<property name="hexpand">true</property>
+								<property name="text" bind-source="MyAddressDialog" bind-property="first-name" bind-flags="bidirectional" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">_Last Name:</property>
+								<property name="use-underline">true</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkEntry">
+								<property name="activates-default">true</property>
+								<property name="halign">fill</property>
+								<property name="hexpand">true</property>
+								<property name="text" bind-source="MyAddressDialog" bind-property="last-name" bind-flags="bidirectional" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<!--
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">_Age:</property>
+								<property name="use-underline">true</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkSpinButton">
+								<property name="digits">0</property>
+								<property name="climb-rate">1</property>
+								<property name="adjustment">
+									<object class="GtkAdjustment">
+										<property name="lower">0</property>
+										<property name="upper">999</property>
+										<property name="step-increment">1</property>
+										<property name="page-increment">5</property>
+										<property name="value" bind-source="MyAddressDialog" bind-property="age" bind-flags="bidirectional" />
+									</object>
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+				-->
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">_Birth Day:</property>
+								<property name="use-underline">true</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkMenuButton">
+								<property name="label" bind-source="MyAddressDialog" bind-property="display-birth-day" />
+								<property name="popover">
+									<object class="GtkPopover">
+										<child>
+											<object class="GtkCalendar" id="birth_day_calendar">
+												<signal name="day-selected" handler="on_birth_day_selected" />
+											</object>
+										</child>
+									</object>
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">_Address:</property>
+								<property name="use-underline">true</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkEntry">
+								<property name="activates-default">true</property>
+								<property name="halign">fill</property>
+								<property name="hexpand">true</property>
+								<property name="text" bind-source="MyAddressDialog" bind-property="address" bind-flags="bidirectional" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">_EMail:</property>
+								<property name="use-underline">true</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkEntry">
+								<property name="activates-default">true</property>
+								<property name="halign">fill</property>
+								<property name="hexpand">true</property>
+								<property name="text" bind-source="MyAddressDialog" bind-property="email" bind-flags="bidirectional" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>
+

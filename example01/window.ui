@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example01</property>
+		<property name="default-width">400</property>
+		<property name="default-height">300</property>
+
+		<child type="titlebar">
+			<object class="GtkHeaderBar">
+				<child type="start">
+					<object class="GtkButton">
+						<property name="icon-name">window-new-symbolic</property>
+						<style>
+							<class name="image-button" />
+						</style>
+						<signal name="clicked" handler="on_new_window_clicked" />
+					</object>
+				</child>
+				<child type="start">
+					<object class="GtkButton">
+						<property name="icon-name">tab-new-symbolic</property>
+						<style>
+							<class name="image-button" />
+						</style>
+						<signal name="clicked" handler="on_new_tab_clicked" />
+					</object>
+				</child>
+				<child type="end">
+					<object class="GtkMenuButton">
+						<property name="icon-name">open-menu-symbolic</property>
+						<property name="menu-model">window_menu</property>
+						<style>
+							<class name="image-button" />
+						</style>
+					</object>
+				</child>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkNotebook" id="notebook">
+			</object>
+		</child>
+
+	</template>
+
+	<menu id="window_menu">
+		<section>
+			<item>
+				<attribute name="label">New Window</attribute>
+				<attribute name="action">app.new_window</attribute>
+			</item>
+			<item>
+				<attribute name="label">New Tab</attribute>
+				<attribute name="action">win.new_tab</attribute>
+			</item>
+		</section>
+		<section>
+			<item>
+				<attribute name="label">Close This Widow</attribute>
+				<attribute name="action">win.close</attribute>
+			</item>
+			<item>
+				<attribute name="label">Quit</attribute>
+				<attribute name="action">app.quit</attribute>
+			</item>
+		</section>
+	</menu>
+</interface>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example10</property>
+		<property name="default-width">400</property>
+		<property name="default-height">300</property>
+
+		<child type="titlebar">
+			<object class="GtkHeaderBar">
+				<child type="start">
+					<object class="GtkButton">
+						<property name="icon-name">document-open-symbolic</property>
+						<style>
+							<class name="image-button" />
+						</style>
+						<signal name="clicked" handler="on_open" />
+					</object>
+				</child>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkScrolledWindow">
+				<property name="has-frame">true</property>
+				<child>
+					<object class="GtkTextView">
+						<property name="editable">false</property>
+						<property name="buffer">
+							<object class="GtkTextBuffer" id="buffer" />
+						</property>
+					</object>
+				</child>
+			</object>
+		</child>
+
+	</template>
+</interface>
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example14</property>
+		<property name="default-width">640</property>
+		<property name="default-height">480</property>
+
+		<child>
+			<object class="GtkOverlay">
+				<child>
+					<object class="WebKitWebView" id="web_view">
+						<signal name="notify::is-loading" handler="on_web_view_notify_is_loading" />
+					</object>
+				</child>
+
+				<child type="overlay">
+					<object class="GtkRevealer">
+						<property name="reveal-child" bind-source="web_view" bind-property="is-loading">false</property>
+						<child>
+							<object class="GtkBox">
+								<property name="orientation">horizontal</property>
+								<property name="spacing">8</property>
+								<property name="margin-start">8</property>
+								<property name="halign">start</property>
+								<property name="valign">end</property>
+								<child>
+									<object class="GtkSpinner" id="spinner">
+									</object>
+								</child>
+								<child>
+									<object class="GtkLabel">
+										<property name="label">loading...</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+		</child>
+
+	</template>
+</interface>
+

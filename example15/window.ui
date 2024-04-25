@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="default-width">300</property>
+		<property name="default-height">300</property>
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+				<child>
+					<object class="GtkLabel">
+						<property name="valign">center</property>
+						<property name="vexpand">true</property>
+						<property name="use-markup">true</property>
+						<property name="label">&lt;span background=&quot;#000000&quot; foreground=&quot;#ffffff&quot; weight=&quot;bold&quot; font_family=&quot;monospace&quot; size=&quot;xx-large&quot;&gt;Hello, world!&lt;/span&gt;</property>
+						<child>
+							<object class="GtkGestureClick">
+								<signal name="released" handler="on_released" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkLabel">
+						<property name="attributes">0 -1 size 24576, 0 -1 weight bold</property>
+						<property name="label" bind-source="MyWindow" bind-property="result" />
+					</object>
+				</child>
+			</object>
+		</child>
+	</template>
+</interface>
+

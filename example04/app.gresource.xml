@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gresources>
+	<gresource prefix="/com/example/example04">
+		<file preprocess="xml-stripblanks">window.ui</file>
+		<file preprocess="xml-stripblanks">address_dialog.ui</file>
+	</gresource>
+</gresources>
+

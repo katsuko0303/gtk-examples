@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<object class="GtkBox" id="root">
+		<property name="orientation">vertical</property>
+		<property name="spacing">8</property>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">horizontal</property>
+				<property name="spacing">8</property>
+				<child>
+					<object class="GtkLabel">
+						<property name="label">_Color:</property>
+						<property name="use-underline">true</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkColorDialogButton" id="color_button">
+						<property name="dialog">
+							<object class="GtkColorDialog">
+								<property name="modal">true</property>
+							</object>
+						</property>
+					</object>
+				</child>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">horizontal</property>
+				<property name="spacing">8</property>
+				<child>
+					<object class="GtkLabel">
+						<property name="label">Line _Width:</property>
+						<property name="use-underline">true</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkSpinButton">
+						<property name="digits">0</property>
+						<property name="climb-rate">1</property>
+						<property name="adjustment">
+							<object class="GtkAdjustment" id="line_width_adjustment">
+								<property name="lower">1</property>
+								<property name="upper">999</property>
+								<property name="step-increment">1</property>
+								<property name="page-increment">5</property>
+							</object>
+						</property>
+					</object>
+				</child>
+			</object>
+		</child>
+
+	</object>
+</interface>
+

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example03</property>
+		<property name="default-width">300</property>
+		<property name="default-height">128</property>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+
+				<child>
+					<object class="GtkPicture">
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<property name="paintable" bind-source="MyWindow" bind-property="paintable" />
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="homogeneous">true</property>
+						<child>
+							<object class="GtkButton">
+								<property name="icon-name">view-refresh-symbolic</property>
+								<property name="halign">fill</property>
+								<property name="hexpand">true</property>
+								<style>
+									<class name="image-button" />
+								</style>
+								<signal name="clicked" handler="on_reset" />
+							</object>
+						</child>
+						<child>
+							<object class="GtkButton">
+								<property name="icon-name" bind-source="MyWindow" bind-property="play-icon-name">media-playback-start-symbolic</property>
+								<property name="halign">fill</property>
+								<property name="hexpand">true</property>
+								<style>
+									<class name="image-button" />
+								</style>
+								<signal name="clicked" handler="on_start_or_stop" />
+							</object>
+						</child>
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>
+
