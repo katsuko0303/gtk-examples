@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example16</property>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+				<property name="spacing">8</property>
+				<property name="margin-start">8</property>
+				<property name="margin-end">8</property>
+				<property name="margin-top">8</property>
+				<property name="margin-bottom">8</property>
+
+				<child>
+					<object class="GtkLabel">
+						<property name="label" bind-source="MyWindow" bind-property="label" />
+						<style>
+							<class name="label1" />
+						</style>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkLabel">
+						<property name="label" bind-source="MyWindow" bind-property="markup_label" />
+						<property name="use-markup">true</property>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkLabel">
+						<property name="attributes" bind-source="MyWindow" bind-property="attributes" />
+						<property name="label" bind-source="MyWindow" bind-property="label" />
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkLabel">
+						<property name="attributes" bind-source="MyWindow" bind-property="attributes_by_string" />
+						<property name="label" bind-source="MyWindow" bind-property="label" />
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>
+

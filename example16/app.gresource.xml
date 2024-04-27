@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gresources>
+	<gresource prefix="/com/example/example16">
+		<file preprocess="xml-stripblanks">window.ui</file>
+		<file>app.css</file>
+	</gresource>
+</gresources>
+
