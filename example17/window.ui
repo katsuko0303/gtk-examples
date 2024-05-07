@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example17</property>
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+				<property name="spacing">8</property>
+				<property name="margin-start">8</property>
+				<property name="margin-end">8</property>
+				<property name="margin-top">8</property>
+				<property name="margin-bottom">8</property>
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">_Background:</property>
+								<property name="use-underline">true</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkColorDialogButton">
+								<property name="rgba" bind-source="MyWindow" bind-property="label-background" bind-flags="bidirectional" />
+								<property name="dialog">
+									<object class="GtkColorDialog">
+										<property name="modal">true</property>
+									</object>
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+				<child>
+					<object class="GtkLabel">
+						<property name="halign">fill</property>
+						<property name="hexpand">true</property>
+						<property name="label">Hello, world!</property>
+						<style>
+							<class name="custom_label" />
+						</style>
+					</object>
+				</child>
+			</object>
+		</child>
+	</template>
+</interface>
+
