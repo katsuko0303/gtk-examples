@@ -57,6 +57,12 @@ static void on_ok(GtkButton *button, gpointer cb_data)
 	gtk_window_destroy(GTK_WINDOW(dialog));
 }
 
+static gboolean close_request(GtkWindow *window)
+{
+	g_signal_emit(G_OBJECT(window), signal_ids[SIGNAL_CANCEL], 0);
+	return FALSE;
+}
+
 static void dispose(GObject *obj)
 {
 	DECLARE_PRIVATE(obj);
@@ -112,6 +118,7 @@ static void my_name_dialog_class_init(MyNameDialogClass *klass)
 {
 	GObjectClass *obj_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+	GtkWindowClass *window_class = GTK_WINDOW_CLASS(klass);
 	GtkShortcutTrigger *trigger;
 	GtkShortcutAction *action;
 	GClosure *closure;
@@ -119,6 +126,8 @@ static void my_name_dialog_class_init(MyNameDialogClass *klass)
 	obj_class->dispose = dispose;
 	obj_class->get_property = get_property;
 	obj_class->set_property = set_property;
+
+	window_class->close_request = close_request;
 
 	properties[PROP_NAME] = g_param_spec_string("name", "", "", "", G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY);
 	properties[PROP_CAN_ACCEPT] = g_param_spec_boolean("can-accept", "", "", FALSE, G_PARAM_READABLE);
