@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example18</property>
+		<property name="default-width">400</property>
+		<property name="default-height">300</property>
+
+		<child type="titlebar">
+			<object class="GtkHeaderBar">
+				<child type="start">
+					<object class="GtkButton">
+						<property name="icon-name">edit-paste-symbolic</property>
+						<signal name="clicked" handler="on_paste" />
+						<style>
+							<class name="image-button" />
+						</style>
+					</object>
+				</child>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+
+				<child>
+					<object class="GtkLabel">
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<property name="label">data is none.</property>
+						<property name="visible" bind-source="MyWindow" bind-property="data-is-none">true</property>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkScrolledWindow">
+						<property name="has-frame">true</property>
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<property name="visible" bind-source="MyWindow" bind-property="data-is-text">false</property>
+						<property name="hscrollbar-policy">never</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="halign">start</property>
+								<property name="valign">start</property>
+								<property name="label" bind-source="MyWindow" bind-property="text-data" />
+								<property name="wrap">true</property>
+								<property name="wrap-mode">word-char</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkPicture">
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<property name="visible" bind-source="MyWindow" bind-property="data-is-image">false</property>
+						<property name="paintable" bind-source="MyWindow" bind-property="image-data" />
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkScrolledWindow">
+						<property name="has-frame">true</property>
+						<property name="valign">fill</property>
+						<property name="vexpand">true</property>
+						<property name="visible" bind-source="MyWindow" bind-property="data-is-files">false</property>
+						<child>
+							<object class="GtkListView">
+								<property name="model">
+									<object class="GtkNoSelection">
+										<property name="model" bind-source="MyWindow" bind-property="files-data" />
+									</object>
+								</property>
+								<property name="factory">
+									<object class="GtkBuilderListItemFactory">
+										<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkBox">
+				<property name="orientation">horizontal</property>
+				<property name="spacing">8</property>
+				<property name="margin-start">8</property>
+				<property name="margin-end">8</property>
+				<child>
+					<object class="GtkImage">
+						<binding name="gicon">
+							<lookup name="icon" type="MyFileItem">
+								<lookup name="item">GtkListItem</lookup>
+							</lookup>
+						</binding>
+					</object>
+				</child>
+				<child>
+					<object class="GtkLabel">
+						<property name="halign">fill</property>
+						<property name="hexpand">true</property>
+						<property name="xalign">0</property>
+						<binding name="label">
+							<lookup name="display-name" type="MyFileItem">
+								<lookup name="item">GtkListItem</lookup>
+							</lookup>
+						</binding>
+					</object>
+				</child>
+			</object>
+		</property>
+	</template>
+</interface>
+										]]></property>
+									</object>
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkDropTarget">
+						<property name="actions">copy</property>
+						<property name="formats">GdkFileList GdkTexture gchararray</property>
+						<signal name="drop" handler="on_drop" />
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>
+

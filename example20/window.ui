@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+	<template class="MyWindow">
+		<property name="title">Example20</property>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+				<property name="spacing">8</property>
+				<property name="margin-start">8</property>
+				<property name="margin-end">8</property>
+				<property name="margin-top">8</property>
+				<property name="margin-bottom">8</property>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">Simple String List</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkDropDown">
+								<property name="model">
+									<object class="GtkStringList">
+										<items>
+											<item>Hoge</item>
+											<item>Piyo</item>
+											<item>Fuga</item>
+										</items>
+									</object>
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">Use Custom Item</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkDropDown">
+								<property name="model" bind-source="MyWindow" bind-property="custom-item-list-model" />
+								<property name="expression">
+									<lookup name="label" type="MyListItem" />
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">Directory List</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkDropDown">
+								<property name="model">
+									<object class="GtkDirectoryList">
+										<property name="attributes">standard::display-name</property>
+										<property name="file" bind-source="MyWindow" bind-property="target-directory" />
+									</object>
+								</property>
+								<property name="expression">
+									<closure type="gchararray" function="get_display_name" />
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">8</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label">Use List Item Factory</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkDropDown">
+								<property name="model" bind-source="MyWindow" bind-property="custom-item-list-model" />
+								<property name="factory">
+									<object class="GtkBuilderListItemFactory">
+										<property name="bytes"><![CDATA[
+<interface>
+	<template class="GtkListItem">
+		<property name="child">
+			<object class="GtkBox">
+				<property name="orientation">horizontal</property>
+				<property name="spacing">8</property>
+				<child>
+					<object class="GtkLabel" id="label">
+						<property name="attributes">0 -1 weight bold</property>
+						<binding name="label">
+							<lookup name="label" type="MyListItem">
+								<lookup name="item">GtkListItem</lookup>
+							</lookup>
+						</binding>
+					</object>
+				</child>
+				<child>
+					<object class="GtkSeparator">
+						<property name="orientation">vertical</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkLabel" id="value">
+						<binding name="label">
+							<lookup name="value" type="MyListItem">
+								<lookup name="item">GtkListItem</lookup>
+							</lookup>
+						</binding>
+					</object>
+				</child>
+			</object>
+		</property>
+	</template>
+</interface>
+										]]></property>
+									</object>
+								</property>
+							</object>
+						</child>
+					</object>
+				</child>
+
+			</object>
+		</child>
+
+	</template>
+</interface>
+
